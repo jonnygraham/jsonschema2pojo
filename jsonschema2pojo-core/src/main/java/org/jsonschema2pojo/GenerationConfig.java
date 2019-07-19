@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright © 2010-2020 Nokia
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -53,6 +53,7 @@ public interface GenerationConfig {
   boolean isIncludeTypeInfo();
 
 	/**
+<<<<<<< HEAD
      * Gets the 'includeConstructorPropertiesAnnotation' configuration option.
      *
      * @return whether to include JDK Constructor Properties. Used by serialization libraries to get parameter names of constructors at runtime. (Not Available on Android)
@@ -624,5 +625,15 @@ public interface GenerationConfig {
   default boolean isUseInnerClassBuilders() {
     return false;
   }
+
+  /**
+   *  Gets the 'genInnerClasses' configuration option.
+   *  Useful for generating all subtypes as inner classes in one main class. The default is one class corresponding to one subtype.
+   * @return false for default 
+   */
+  default boolean isGenInnerClasses() {
+    return false;
+  }
+
 
 }
