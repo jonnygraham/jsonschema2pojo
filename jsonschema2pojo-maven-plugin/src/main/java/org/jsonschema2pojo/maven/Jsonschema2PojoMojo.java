@@ -1252,6 +1252,11 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
     }
 
     @Override
+    public boolean isGenInnerClasses() {
+        return false;
+    }
+
+    @Override
     public Map<String, String> getFormatTypeMapping() {
         return formatTypeMapping;
     }
