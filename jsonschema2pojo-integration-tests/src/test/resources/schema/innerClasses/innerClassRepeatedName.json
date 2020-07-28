@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+       "properties": {
+        "type": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "funds-transfer-type": {
+              "type": "string"
+            },
+            "ach-check-type": {
+              "type": "string"
+            },
+            "bank-account-name": {
+              "type": "string"
+            },
+            "bank-account-type": {
+              "type": "string"
+            },
+            "bank-account-number": {
+              "type": "string"
+            },
+            "routing-number": {
+              "type": "string"
+            },
+            "contact-email": {
+              "type": "string"
+            },
+            "contact-name": {
+              "type": "string"
+            },
+            "ip-address": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "properties" : {
+                "extra1" : {
+                  "type" : "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

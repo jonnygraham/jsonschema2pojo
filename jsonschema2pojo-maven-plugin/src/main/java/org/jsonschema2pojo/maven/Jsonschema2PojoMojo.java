@@ -806,6 +806,15 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
     private boolean useInnerClassBuilders = false;
 
     /**
+     * If set to true, then any nested types will have inner classes generated for them within the main containing class.
+     * This can avoid naming collisions if generating from multiple Json Schemas into the same package namespace.
+     *
+     * @parameter property="jsonschema2pojo.useInnerClasses"
+     *            default-value="false"
+     *
+     */
+    private boolean useInnerClasses = false;
+    /**
      * @parameter property="jsonschema2pojo.includeConstructorPropertiesAnnotation"
      *            default-value="false"
      * @since 1.0.2
@@ -1253,7 +1262,7 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
 
     @Override
     public boolean isUseInnerClasses() {
-        return false;
+        return useInnerClasses;
     }
 
     @Override
