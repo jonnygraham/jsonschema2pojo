@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright © 2010-2020 Nokia
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,7 +36,6 @@ import org.jsonschema2pojo.Language;
 import org.jsonschema2pojo.NoopAnnotator;
 import org.jsonschema2pojo.SourceSortOrder;
 import org.jsonschema2pojo.SourceType;
-import org.jsonschema2pojo.cli.CommandLineLogger.LogLevel;
 import org.jsonschema2pojo.cli.CommandLineLogger.LogLevelValidator;
 import org.jsonschema2pojo.rules.RuleFactory;
 
@@ -74,8 +73,8 @@ public class Arguments implements GenerationConfig {
     @Parameter(names = { "--include-constructor-properties-annotation" }, description = "Generate ConstructorProperties annotation with parameter names of constructors. (Not Available on Android)")
     private boolean includeConstructorPropertiesAnnotation = false;
 
-    @Parameter(names = { "--gen-inner-classes" }, description = "Generate all subtypes as inner classes in one main class. The default is one class corresponding to one subtype.")
-    private boolean genInnerClasses = false;
+    @Parameter(names = { "--use-inner-classes" }, description = "Generate all subtypes as inner classes in one main class. The default is one class corresponding to one subtype.")
+    private boolean useInnerClasses = false;
 
     @Parameter(names = { "-c", "--generate-constructors" }, description = "Generate constructors")
     private boolean generateConstructors = false;
@@ -606,8 +605,8 @@ public class Arguments implements GenerationConfig {
     }
 
     @Override
-    public boolean isGenInnerClasses() {
-        return genInnerClasses;
+    public boolean isUseInnerClasses() {
+        return useInnerClasses;
     }
 
     @Override

@@ -239,7 +239,7 @@ public class ObjectRule implements Rule<JPackage, JType> {
                     newType = _package._class(JMod.PUBLIC, ruleFactory.getNameHelper().getUniqueClassName(nodeName, node, _package), ClassType.CLASS);
                 } else {
                     // support generating inner classes
-                    if(ruleFactory.getGenerationConfig().isGenInnerClasses() && _package.classes().hasNext()){
+                    if(ruleFactory.getGenerationConfig().isUseInnerClasses() && _package.classes().hasNext()){
                         newType = _package.classes().next()._class(JMod.PUBLIC | JMod.STATIC, ruleFactory.getNameHelper().getUniqueClassName(nodeName, node, _package));
                     }else {
                         newType = _package._class(ruleFactory.getNameHelper().getUniqueClassName(nodeName, node, _package));

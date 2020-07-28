@@ -1311,7 +1311,7 @@ public class Jsonschema2PojoTask extends Task implements GenerationConfig {
     }
 
     @Override
-    public boolean isGenInnerClasses() {
+    public boolean isUseInnerClasses() {
         return false;
     }
 

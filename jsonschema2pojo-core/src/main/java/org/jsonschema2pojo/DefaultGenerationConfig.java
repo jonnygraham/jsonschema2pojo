@@ -466,7 +466,7 @@ public class DefaultGenerationConfig implements GenerationConfig {
     }
 
     @Override
-    public boolean isGenInnerClasses() {
+    public boolean isUseInnerClasses() {
         return false;
     }
 

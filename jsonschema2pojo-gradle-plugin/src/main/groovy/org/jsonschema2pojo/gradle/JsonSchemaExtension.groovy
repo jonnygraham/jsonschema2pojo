@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright © 2010-2014 Nokia
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -285,7 +285,7 @@ public class JsonSchemaExtension implements GenerationConfig {
        |formatTypeMapping = ${formatTypeMapping}
        |useInnerClassBuilders = ${useInnerClassBuilders}
        |includeConstructorPropertiesAnnotation = ${includeConstructorPropertiesAnnotation}
-       |genInnerClasses = ${genInnerClasses}
+       |genInnerClasses = ${useInnerClasses}
      """.stripMargin()
   }
   
@@ -294,7 +294,7 @@ public class JsonSchemaExtension implements GenerationConfig {
   }
 
   @Override
-  boolean isGenInnerClasses() {
+  boolean isUseInnerClasses() {
     return false
   }
 }

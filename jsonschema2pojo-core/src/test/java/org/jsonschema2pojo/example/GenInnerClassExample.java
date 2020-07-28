@@ -1,5 +1,5 @@
 /**
- * Copyright © 2010-2017 Nokia
+ * Copyright © 2010-2020 Nokia
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,13 +43,13 @@ public class GenInnerClassExample {
             }
             
             @Override
-            public boolean isGenInnerClasses() { return true; }
+            public boolean isUseInnerClasses() { return true; }
         };
 
         SchemaMapper mapper = new SchemaMapper(new RuleFactory(config, new Jackson2Annotator(config), new SchemaStore()), new SchemaGenerator());
-        mapper.generate(codeModel, "Demo", "com.example", source);
+        mapper.generate(codeModel, "Demo", "com.example4", source);
 
-        codeModel.build(new File("/tmp"));
+        codeModel.build(new File("C:/dev"));
         // cat /tmp/com/example/Demo.java
 
     }

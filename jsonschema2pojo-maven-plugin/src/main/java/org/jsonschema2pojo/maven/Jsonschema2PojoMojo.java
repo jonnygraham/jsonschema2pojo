@@ -1252,7 +1252,7 @@ public class Jsonschema2PojoMojo extends AbstractMojo implements GenerationConfi
     }
 
     @Override
-    public boolean isGenInnerClasses() {
+    public boolean isUseInnerClasses() {
         return false;
     }
 

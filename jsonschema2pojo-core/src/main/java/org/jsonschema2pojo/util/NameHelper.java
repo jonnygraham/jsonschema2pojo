@@ -272,6 +272,19 @@ public class NameHelper {
         try {
             JDefinedClass _class = _package._class(className);
             _package.remove(_class);
+
+            // Check for innerclass
+            if (_package.classes().hasNext()) {
+                JDefinedClass containingClass = _package.classes().next();
+                boolean exists = false;
+                for(JClass c : containingClass.listClasses()) {
+                    if (className.equals(c.name())) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (exists) return makeUnique(MakeUniqueClassName.makeUnique(className), _package);
+            }
             return className;
         } catch (JClassAlreadyExistsException e) {
             return makeUnique(MakeUniqueClassName.makeUnique(className), _package);
