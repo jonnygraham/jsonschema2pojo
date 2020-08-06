@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "propertyClasspathRef": {
+      "$ref": "classpath:/schema/innerClasses/a.json"
+    },
+    "inner" : {
+      "type" : "object",
+      "properties" : {
+        "fieldA" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

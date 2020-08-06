@@ -16,6 +16,7 @@
 
 package org.jsonschema2pojo.integration.config;
 
+import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
@@ -25,13 +26,17 @@ import org.junit.Test;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.jsonschema2pojo.integration.util.CodeGenerationHelper.config;
 import static org.junit.Assert.assertThat;
 
@@ -83,6 +88,49 @@ public class UseInnerClassesIT {
         assertThat(classInstance.getName(), is(expectedType));
     }
 
+
+    @Test
+    public void innerClassesAlongsideRef() throws ClassNotFoundException, IntrospectionException {
+        ClassLoader classpathRefsClassLoader = schemaRule.generateAndCompile("/schema/innerClasses/refPlusInner.json", "com.example", config
+                ("useInnerClasses", true));
+
+        Class<?> complexClass = classpathRefsClassLoader.loadClass("com.example.RefPlusInner");
+
+        List<String[]> expectedTypes = Arrays.asList(
+                new String[] {"inner", "com.example.RefPlusInner$Inner"},
+                new String[] {"inner.fieldA", "java.lang.String"},
+                new String[] {"propertyClasspathRef", "com.example.A"}
+        );
+        for (String[] expectedType : expectedTypes) {
+            assertTypeIsExpected(complexClass, expectedType[0], expectedType[1]);
+        }
+
+
+    }
+
+    private File createSchemaWithAbsoluteRef() throws IOException {
+
+        URL absoluteUrlForAddressSchema = this.getClass().getResource("/schema/ref/address.json");
+
+        String absoluteRefSchemaTemplate = IOUtils.toString(this.getClass().getResourceAsStream("/schema/ref/absoluteRef.json.template"));
+        String absoluteRefSchema = absoluteRefSchemaTemplate.replace("$ABSOLUTE_REF", absoluteUrlForAddressSchema.toString());
+
+        File absoluteRefSchemaFile = File.createTempFile("absoluteRef", ".json");
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(absoluteRefSchemaFile);
+            try {
+                IOUtils.write(absoluteRefSchema, outputStream);
+            } finally {
+                IOUtils.closeQuietly(outputStream);
+            }
+        } finally {
+            absoluteRefSchemaFile.deleteOnExit();
+        }
+
+        return absoluteRefSchemaFile;
+
+    }
  /*   @Test
 
     public void defaultTypesAreNotJoda() throws ClassNotFoundException, IntrospectionException {
